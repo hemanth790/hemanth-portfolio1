@@ -1,3 +1,7 @@
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
 }
@@ -10,21 +14,34 @@ body {
   margin: 0;
   background: #f3f1ec;
   color: #151515;
-  font-family: Manrope, Arial, sans-serif;
+  font-family: "Manrope", Arial, sans-serif;
   overflow-x: hidden;
 }
 
-/* GRAIN */
+img,
+video {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   GRAIN
+========================================================= */
+
 .grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .04;
-  z-index: 20;
+  opacity: 0.04;
+  z-index: 100;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-/* NAV */
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 .nav {
   height: 82px;
   padding: 0 5vw;
@@ -32,6 +49,9 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #d9d6cf;
+  background: #f3f1ec;
+  position: relative;
+  z-index: 50;
 }
 
 .logo {
@@ -48,6 +68,7 @@ body {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 30px;
 }
 
@@ -56,6 +77,12 @@ footer > a:not(.logo) {
   font-size: 13px;
   color: #555;
   text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover,
+footer > a:not(.logo):hover {
+  color: #e55737;
 }
 
 .nav-cta {
@@ -65,14 +92,23 @@ footer > a:not(.logo) {
   padding: 12px 18px;
   text-decoration: none;
   border-radius: 100px;
+  transition: transform 0.25s ease;
 }
 
-/* HERO */
+.nav-cta:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero {
   min-height: calc(100vh - 82px);
   padding: 6vw 5vw;
   display: grid;
-  grid-template-columns: 1.08fr .92fr;
+  grid-template-columns: 1.08fr 0.92fr;
   gap: 5vw;
   align-items: center;
 }
@@ -90,8 +126,8 @@ footer > a:not(.logo) {
 .section h2,
 .contact h2 {
   font-size: clamp(48px, 7vw, 108px);
-  line-height: .9;
-  letter-spacing: -.075em;
+  line-height: 0.9;
+  letter-spacing: -0.075em;
   margin: 0;
   font-weight: 800;
 }
@@ -105,7 +141,7 @@ footer > a:not(.logo) {
 .contact h2 em {
   font-family: Georgia, serif;
   font-weight: 400;
-  letter-spacing: -.07em;
+  letter-spacing: -0.07em;
 }
 
 .intro {
@@ -135,6 +171,11 @@ footer > a:not(.logo) {
 .button-dark {
   background: #181818;
   color: #fff;
+  transition: transform 0.25s ease;
+}
+
+.button-dark:hover {
+  transform: translateY(-2px);
 }
 
 .text-link {
@@ -142,7 +183,11 @@ footer > a:not(.logo) {
   font-size: 13px;
 }
 
-/* HERO IMAGE */
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
 .hero-image {
   position: relative;
 }
@@ -170,7 +215,7 @@ footer > a:not(.logo) {
   font-size: 11px;
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .image-label span {
@@ -187,12 +232,20 @@ footer > a:not(.logo) {
   color: #777;
 }
 
-/* SECTIONS */
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
 .section {
   padding: 12vw 5vw;
 }
 
-/* WORK */
+
+/* =========================================================
+   WORK
+========================================================= */
+
 .work {
   background: #171717;
   color: #f5f2eb;
@@ -220,14 +273,21 @@ footer > a:not(.logo) {
   margin: 0;
 }
 
-/* VIDEO SHOWCASE */
+
+/* =========================================================
+   VIDEO SHOWCASE
+========================================================= */
+
 .video-showcase {
   max-width: 1180px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 80px;
 }
+
+
+/* Every row */
 
 .video-row {
   display: flex;
@@ -236,35 +296,67 @@ footer > a:not(.logo) {
   gap: 28px;
 }
 
-/* VERTICAL VIDEO ROW */
+
+/* =========================================================
+   VERTICAL VIDEOS
+========================================================= */
+
 .vertical-row .project {
   width: min(100%, 370px);
 }
 
-/* HORIZONTAL VIDEO ROW */
-.horizontal-row .project {
-  width: calc(50% - 14px);
+
+/* =========================================================
+   HORIZONTAL VIDEOS
+========================================================= */
+
+.horizontal-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
-/* VIDEO CONTAINER */
+
+/*
+  Third horizontal video is centered underneath
+*/
+
+.horizontal-row .project:nth-child(3) {
+  grid-column: 1 / -1;
+  width: calc(50% - 14px);
+  justify-self: center;
+}
+
+
+/* =========================================================
+   PROJECT VISUAL
+========================================================= */
+
 .project-visual {
+  width: 100%;
   background: #000;
   border: 1px solid #393939;
   overflow: hidden;
   position: relative;
 }
 
-/* 9:16 */
+
+/* 9:16 vertical */
+
 .portrait-video {
   aspect-ratio: 9 / 16;
 }
 
-/* 16:9 */
+
+/* 16:9 horizontal */
+
 .landscape-video {
   aspect-ratio: 16 / 9;
 }
 
-/* VIDEO */
+
+/* Video */
+
 .project-visual video {
   width: 100%;
   height: 100%;
@@ -273,7 +365,11 @@ footer > a:not(.logo) {
   background: #000;
 }
 
-/* PROJECT INFO */
+
+/* =========================================================
+   PROJECT INFO
+========================================================= */
+
 .project-info {
   display: flex;
   justify-content: space-between;
@@ -283,6 +379,7 @@ footer > a:not(.logo) {
 
 .project-info h3 {
   font-size: 15px;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -291,7 +388,11 @@ footer > a:not(.logo) {
   color: #aaa;
 }
 
-/* ABOUT */
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -317,7 +418,7 @@ footer > a:not(.logo) {
   font-size: clamp(24px, 3vw, 39px) !important;
   line-height: 1.28 !important;
   color: #191919 !important;
-  letter-spacing: -.035em;
+  letter-spacing: -0.035em;
 }
 
 .about-copy p {
@@ -327,7 +428,11 @@ footer > a:not(.logo) {
   margin: 0 0 25px;
 }
 
-/* EXPERIENCE */
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
 .experience {
   background: #e7e4dd;
   display: grid;
@@ -354,7 +459,11 @@ footer > a:not(.logo) {
   margin: 0 0 25px;
 }
 
-/* SKILLS */
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
 .services {
   background: #dfddd7;
 }
@@ -395,7 +504,11 @@ footer > a:not(.logo) {
   border-bottom: 1px solid #c9c6bf;
 }
 
-/* CONTACT */
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
 .contact {
   background: #e55737;
   color: #fff;
@@ -404,7 +517,7 @@ footer > a:not(.logo) {
 }
 
 .contact .eyebrow {
-  color: rgba(255,255,255,.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .contact h2 {
@@ -413,7 +526,7 @@ footer > a:not(.logo) {
 
 .contact > p:not(.eyebrow) {
   margin: 35px auto;
-  color: rgba(255,255,255,.85);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 15px;
 }
 
@@ -442,19 +555,29 @@ footer > a:not(.logo) {
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
+  transition: transform 0.25s ease;
+}
+
+.contact-button:hover {
+  transform: translateY(-2px);
 }
 
 .contact-button span {
   font-size: 18px;
 }
 
-/* FOOTER */
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 footer {
   padding: 30px 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f3f1ec;
 }
 
 footer p {
@@ -462,26 +585,52 @@ footer p {
   color: #777;
 }
 
-/* REVEAL ANIMATION */
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+/*
+  Kept visible by default so the website never becomes
+  invisible if JavaScript fails to load.
+*/
+
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity .75s ease,
-    transform .75s cubic-bezier(.2,.7,.2,1);
-}
-
-.reveal.visible {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
 
 
-/* =========================
+/* =========================================================
+   DESKTOP VIDEO HOVER
+========================================================= */
+
+.project {
+  transition: transform 0.35s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+}
+
+.project-visual {
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.project:hover .project-visual {
+  border-color: #5a5a5a;
+}
+
+
+/* =========================================================
    MOBILE
-   ========================= */
+========================================================= */
 
 @media (max-width: 800px) {
+
+  /* NAV */
 
   .nav {
     padding: 0 6vw;
@@ -495,6 +644,9 @@ footer p {
   .nav-cta {
     padding: 10px 14px;
   }
+
+
+  /* HERO */
 
   .hero {
     padding: 15vw 6vw;
@@ -519,6 +671,9 @@ footer p {
     display: none;
   }
 
+
+  /* SECTIONS */
+
   .section {
     padding: 20vw 6vw;
   }
@@ -536,27 +691,51 @@ footer p {
     margin-top: 25px;
   }
 
+
+  /* VIDEO SHOWCASE */
+
   .video-showcase {
-    gap: 45px;
+    gap: 55px;
   }
+
+
+  /* ALL ROWS STACK */
 
   .video-row {
-    gap: 18px;
-  }
-
-  /* TWO VERTICAL VIDEOS SIDE BY SIDE */
-  .vertical-row .project {
-    width: calc(50% - 9px);
-  }
-
-  /* HORIZONTAL VIDEOS STACK */
-  .horizontal-row {
+    display: flex;
     flex-direction: column;
+    gap: 35px;
+    align-items: center;
+  }
+
+
+  /* VERTICAL */
+
+  .vertical-row .project {
+    width: min(100%, 360px);
+  }
+
+
+  /* HORIZONTAL */
+
+  .horizontal-row {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: stretch;
   }
 
   .horizontal-row .project {
     width: 100%;
   }
+
+  .horizontal-row .project:nth-child(3) {
+    width: 100%;
+    justify-self: auto;
+  }
+
+
+  /* PROJECT INFO */
 
   .project-info {
     display: block;
@@ -566,6 +745,9 @@ footer p {
     display: block;
     margin-top: 5px;
   }
+
+
+  /* ABOUT */
 
   .about,
   .experience {
@@ -581,11 +763,17 @@ footer p {
     padding-top: 45px;
   }
 
+
+  /* SKILLS */
+
   .skill-columns {
     margin-left: 0;
     grid-template-columns: 1fr;
     gap: 35px;
   }
+
+
+  /* CONTACT */
 
   .contact {
     padding: 24vw 6vw;
@@ -601,6 +789,9 @@ footer p {
     font-size: 10px;
   }
 
+
+  /* FOOTER */
+
   footer {
     padding: 25px 6vw;
     flex-wrap: wrap;
@@ -612,4 +803,54 @@ footer p {
     width: 100%;
     margin: 0;
   }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .nav {
+    height: 64px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .nav-cta {
+    font-size: 11px;
+  }
+
+  .hero {
+    padding-top: 18vw;
+  }
+
+  .hero h1 {
+    font-size: 17vw;
+  }
+
+  .intro {
+    font-size: 15px;
+  }
+
+  .image-wrap {
+    height: 470px;
+  }
+
+  .section-heading h2 {
+    font-size: 15vw;
+  }
+
+  .project-info h3 {
+    font-size: 14px;
+  }
+
+  .project-info span {
+    font-size: 11px;
+  }
+
 }
