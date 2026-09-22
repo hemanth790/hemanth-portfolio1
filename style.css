@@ -1,4 +1,10 @@
 /* =========================================================
+   HEMANTH B — VIDEO EDITOR PORTFOLIO
+   COMPLETE STYLESHEET
+========================================================= */
+
+
+/* =========================================================
    RESET
 ========================================================= */
 
@@ -8,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -18,9 +25,22 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 img,
 video {
   max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
 }
 
 
@@ -50,8 +70,9 @@ video {
   justify-content: space-between;
   border-bottom: 1px solid #d9d6cf;
   background: #f3f1ec;
-  position: relative;
-  z-index: 50;
+  position: sticky;
+  top: 0;
+  z-index: 500;
 }
 
 .logo {
@@ -74,15 +95,46 @@ video {
 
 .nav-links a,
 footer > a:not(.logo) {
+  position: relative;
   font-size: 13px;
   color: #555;
   text-decoration: none;
-  transition: color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -7px;
+
+  width: 100%;
+  height: 1px;
+
+  background: #e55737;
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.3s ease;
 }
 
 .nav-links a:hover,
 footer > a:not(.logo):hover {
   color: #e55737;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+.nav-links a.active {
+  color: #151515;
 }
 
 .nav-cta {
@@ -92,11 +144,15 @@ footer > a:not(.logo):hover {
   padding: 12px 18px;
   text-decoration: none;
   border-radius: 100px;
-  transition: transform 0.25s ease;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .nav-cta:hover {
   transform: translateY(-2px);
+  background: #e55737;
 }
 
 
@@ -107,8 +163,10 @@ footer > a:not(.logo):hover {
 .hero {
   min-height: calc(100vh - 82px);
   padding: 6vw 5vw;
+
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
+
   gap: 5vw;
   align-items: center;
 }
@@ -162,8 +220,11 @@ footer > a:not(.logo):hover {
   display: inline-flex;
   align-items: center;
   gap: 22px;
+
   padding: 15px 20px;
+
   border-radius: 100px;
+
   font-size: 13px;
   text-decoration: none;
 }
@@ -171,16 +232,44 @@ footer > a:not(.logo):hover {
 .button-dark {
   background: #181818;
   color: #fff;
-  transition: transform 0.25s ease;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .button-dark:hover {
   transform: translateY(-2px);
+  background: #e55737;
 }
 
 .text-link {
   color: #222;
   font-size: 13px;
+  text-decoration: none;
+  position: relative;
+}
+
+.text-link::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+
+  height: 1px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.3s ease;
+}
+
+.text-link:hover::after {
+  transform: scaleX(1);
 }
 
 
@@ -203,17 +292,28 @@ footer > a:not(.logo):hover {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
+
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-image:hover .image-wrap img {
+  transform: scale(1.025);
 }
 
 .image-label {
   position: absolute;
   bottom: 18px;
   left: -20px;
+
   background: #e55737;
   color: #fff;
+
   padding: 15px 19px;
+
   font-size: 11px;
   font-weight: 700;
+
   line-height: 1.4;
   letter-spacing: 0.5px;
 }
@@ -226,7 +326,9 @@ footer > a:not(.logo):hover {
   position: absolute;
   right: -15px;
   top: 50%;
+
   writing-mode: vertical-rl;
+
   font-family: "DM Mono", monospace;
   font-size: 10px;
   color: #777;
@@ -258,8 +360,10 @@ footer > a:not(.logo):hover {
 .section-heading {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+
   align-items: end;
-  margin-bottom: 70px;
+
+  margin-bottom: 80px;
 }
 
 .section-heading h2 {
@@ -279,52 +383,90 @@ footer > a:not(.logo):hover {
 ========================================================= */
 
 .video-showcase {
+  width: 100%;
   max-width: 1180px;
+
   margin: 0 auto;
+
   display: flex;
   flex-direction: column;
-  gap: 80px;
+
+  gap: 100px;
 }
 
 
-/* Every row */
+/* =========================================================
+   VIDEO ROW
+========================================================= */
 
 .video-row {
+  width: 100%;
+
   display: flex;
+
   justify-content: center;
   align-items: flex-start;
+
   gap: 28px;
 }
 
 
 /* =========================================================
-   VERTICAL VIDEOS
+   3 VERTICAL VIDEOS
 ========================================================= */
 
 .vertical-row .project {
-  width: min(100%, 370px);
+  flex: 1 1 0;
+  width: 0;
+  max-width: 370px;
 }
 
 
 /* =========================================================
-   HORIZONTAL VIDEOS
+   2 HORIZONTAL VIDEOS
 ========================================================= */
 
 .horizontal-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 28px;
 }
 
+.horizontal-row .project {
+  width: 100%;
+}
 
-/*
-  Third horizontal video is centered underneath
-*/
 
-.horizontal-row .project:nth-child(3) {
-  grid-column: 1 / -1;
-  width: calc(50% - 14px);
-  justify-self: center;
+/* =========================================================
+   SINGLE HORIZONTAL VIDEO
+========================================================= */
+
+.single-video-row {
+  justify-content: center;
+}
+
+.single-video-row .project {
+  width: min(100%, 760px);
+}
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.project {
+  position: relative;
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+}
+
+.project:hover {
+  transform: translateY(-7px);
 }
 
 
@@ -334,35 +476,128 @@ footer > a:not(.logo):hover {
 
 .project-visual {
   width: 100%;
+
   background: #000;
+
   border: 1px solid #393939;
+
   overflow: hidden;
+
   position: relative;
+
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.project:hover .project-visual {
+  border-color: #666;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 
-/* 9:16 vertical */
+/* =========================================================
+   9:16 VERTICAL
+========================================================= */
 
 .portrait-video {
   aspect-ratio: 9 / 16;
 }
 
 
-/* 16:9 horizontal */
+/* =========================================================
+   16:9 HORIZONTAL
+========================================================= */
 
 .landscape-video {
   aspect-ratio: 16 / 9;
 }
 
 
-/* Video */
+/* =========================================================
+   VIDEO
+========================================================= */
 
 .project-visual video {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: contain;
+
   background: #000;
+
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+}
+
+.project:hover .project-visual video {
+  transform: scale(1.025);
+}
+
+
+/* =========================================================
+   VIDEO HOVER BUTTON
+========================================================= */
+
+.video-hover {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 82px;
+  height: 82px;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.75);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  color: #111;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+}
+
+.video-hover:hover {
+  background: #e55737;
+  color: #fff;
+}
+
+.video-card:hover .video-hover {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+}
+
+.video-card.is-playing .video-hover {
+  opacity: 0;
 }
 
 
@@ -372,20 +607,212 @@ footer > a:not(.logo):hover {
 
 .project-info {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   padding: 14px 2px 0;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.project:hover .project-info {
+  transform: translateY(-2px);
 }
 
 .project-info h3 {
   font-size: 15px;
+
   font-weight: 600;
+
   margin: 0;
+
+  letter-spacing: -0.02em;
 }
 
 .project-info span {
-  font-size: 12px;
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
   color: #aaa;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* stagger effect */
+
+.video-row .project:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.video-row .project:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.video-row .project:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+
+/* =========================================================
+   CINEMATIC VIDEO MODAL
+========================================================= */
+
+.video-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.video-modal.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+.video-modal-backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.9);
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.video-modal-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1100px, 94vw);
+
+  max-height: 90vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transform: scale(0.94);
+
+  opacity: 0;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+.video-modal.active .video-modal-content {
+  transform: scale(1);
+
+  opacity: 1;
+}
+
+.video-modal-content video {
+  display: block;
+
+  width: auto;
+
+  max-width: 100%;
+
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  background: #000;
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.6);
+}
+
+.video-modal-close {
+  position: absolute;
+
+  top: -55px;
+
+  right: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #fff;
+
+  font-size: 26px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.video-modal-close:hover {
+  background: #e55737;
+
+  transform: rotate(90deg);
 }
 
 
@@ -395,15 +822,20 @@ footer > a:not(.logo):hover {
 
 .about {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 8vw;
+
   min-height: 80vh;
 }
 
 .about-sticky {
   align-self: start;
+
   position: sticky;
-  top: 40px;
+
+  top: 110px;
 }
 
 .about h2 {
@@ -416,15 +848,21 @@ footer > a:not(.logo):hover {
 
 .big-copy {
   font-size: clamp(24px, 3vw, 39px) !important;
+
   line-height: 1.28 !important;
+
   color: #191919 !important;
+
   letter-spacing: -0.035em;
 }
 
 .about-copy p {
   font-size: 16px;
+
   line-height: 1.8;
+
   color: #64625d;
+
   margin: 0 0 25px;
 }
 
@@ -435,14 +873,19 @@ footer > a:not(.logo):hover {
 
 .experience {
   background: #e7e4dd;
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 8vw;
+
   align-items: start;
 }
 
 .experience .section-heading {
   display: block;
+
   margin: 0;
 }
 
@@ -452,10 +895,15 @@ footer > a:not(.logo):hover {
 
 .experience-copy p {
   font-size: 18px;
+
   line-height: 1.7;
+
   color: #5f5d58;
+
   border-bottom: 1px solid #c8c4bc;
+
   padding: 0 0 25px;
+
   margin: 0 0 25px;
 }
 
@@ -478,29 +926,42 @@ footer > a:not(.logo):hover {
 
 .skill-columns {
   margin-left: 33.33%;
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
   gap: 35px;
 }
 
 .skill-group {
   border-top: 1px solid #b9b6af;
+
   padding-top: 20px;
 }
 
 .skill-group h3 {
   font-family: "DM Mono", monospace;
+
   font-size: 11px;
+
   letter-spacing: 1px;
+
   margin: 0 0 20px;
 }
 
 .skill-group p {
   font-size: 13px;
+
   color: #666;
+
   line-height: 1.5;
+
   margin: 0;
+
   padding: 10px 0;
+
   border-bottom: 1px solid #c9c6bf;
 }
 
@@ -511,8 +972,11 @@ footer > a:not(.logo):hover {
 
 .contact {
   background: #e55737;
+
   color: #fff;
+
   text-align: center;
+
   padding: 13vw 5vw;
 }
 
@@ -526,40 +990,72 @@ footer > a:not(.logo):hover {
 
 .contact > p:not(.eyebrow) {
   margin: 35px auto;
+
   color: rgba(255, 255, 255, 0.85);
+
   font-size: 15px;
 }
 
 .contact-links {
   display: flex;
+
   justify-content: center;
+
   gap: 20px;
+
   flex-wrap: wrap;
+
   margin: -10px 0 30px;
 }
 
 .contact-links a,
 .contact-links span {
   color: #fff;
+
   font-size: 13px;
+}
+
+.contact-links a {
+  text-decoration: none;
+
+  transition: opacity 0.25s ease;
+}
+
+.contact-links a:hover {
+  opacity: 0.7;
 }
 
 .contact-button {
   display: inline-flex;
+
   align-items: center;
+
   gap: 30px;
+
   padding: 18px 25px;
+
   border-radius: 100px;
+
   background: #fff;
+
   color: #171717;
+
   text-decoration: none;
+
   font-size: 12px;
+
   font-weight: 700;
-  transition: transform 0.25s ease;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .contact-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .contact-button span {
@@ -573,67 +1069,67 @@ footer > a:not(.logo):hover {
 
 footer {
   padding: 30px 5vw;
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+
   background: #f3f1ec;
 }
 
 footer p {
   font-size: 11px;
+
   color: #777;
 }
 
+footer > a:not(.logo) {
+  color: #555;
+}
+
 
 /* =========================================================
-   REVEAL
+   TABLET
 ========================================================= */
 
-/*
-  Kept visible by default so the website never becomes
-  invisible if JavaScript fails to load.
-*/
+@media (max-width: 1100px) {
 
-.reveal {
-  opacity: 1;
-  transform: translateY(0);
+  .video-showcase {
+    max-width: 900px;
+  }
+
+  .vertical-row {
+    gap: 20px;
+  }
+
+  .horizontal-row {
+    gap: 20px;
+  }
+
+  .section-heading {
+    grid-template-columns: 0.7fr 2fr 0.7fr;
+  }
+
 }
 
 
 /* =========================================================
-   DESKTOP VIDEO HOVER
-========================================================= */
-
-.project {
-  transition: transform 0.35s ease;
-}
-
-.project:hover {
-  transform: translateY(-5px);
-}
-
-.project-visual {
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.project:hover .project-visual {
-  border-color: #5a5a5a;
-}
-
-
-/* =========================================================
-   MOBILE
+   MOBILE / TABLET
 ========================================================= */
 
 @media (max-width: 800px) {
 
-  /* NAV */
+  /* -----------------------------------------
+     NAV
+  ----------------------------------------- */
 
   .nav {
     padding: 0 6vw;
+
     height: 70px;
   }
 
@@ -646,17 +1142,32 @@ footer p {
   }
 
 
-  /* HERO */
+  /* -----------------------------------------
+     HERO
+  ----------------------------------------- */
 
   .hero {
+    min-height: auto;
+
     padding: 15vw 6vw;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 60px;
   }
 
   .hero h1 {
     font-size: 16vw;
+  }
+
+  .intro {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
   }
 
   .image-wrap {
@@ -672,7 +1183,9 @@ footer p {
   }
 
 
-  /* SECTIONS */
+  /* -----------------------------------------
+     SECTIONS
+  ----------------------------------------- */
 
   .section {
     padding: 20vw 6vw;
@@ -680,7 +1193,8 @@ footer p {
 
   .section-heading {
     display: block;
-    margin-bottom: 50px;
+
+    margin-bottom: 55px;
   }
 
   .section-heading h2 {
@@ -692,62 +1206,101 @@ footer p {
   }
 
 
-  /* VIDEO SHOWCASE */
+  /* -----------------------------------------
+     VIDEO SHOWCASE
+  ----------------------------------------- */
 
   .video-showcase {
-    gap: 55px;
+    gap: 70px;
   }
 
 
-  /* ALL ROWS STACK */
+  /* -----------------------------------------
+     ALL VIDEO ROWS
+  ----------------------------------------- */
 
   .video-row {
     display: flex;
+
     flex-direction: column;
-    gap: 35px;
+
     align-items: center;
+
+    gap: 40px;
   }
 
 
-  /* VERTICAL */
+  /* -----------------------------------------
+     VERTICAL VIDEOS
+  ----------------------------------------- */
 
   .vertical-row .project {
     width: min(100%, 360px);
+
+    max-width: none;
   }
 
 
-  /* HORIZONTAL */
+  /* -----------------------------------------
+     HORIZONTAL VIDEOS
+  ----------------------------------------- */
 
   .horizontal-row {
     display: flex;
+
     flex-direction: column;
-    gap: 35px;
+
     align-items: stretch;
+
+    gap: 40px;
   }
 
   .horizontal-row .project {
     width: 100%;
   }
 
-  .horizontal-row .project:nth-child(3) {
+  .single-video-row .project {
     width: 100%;
-    justify-self: auto;
   }
 
 
-  /* PROJECT INFO */
+  /* -----------------------------------------
+     PROJECT INFO
+  ----------------------------------------- */
 
   .project-info {
     display: block;
+
+    padding-top: 12px;
   }
 
   .project-info span {
     display: block;
-    margin-top: 5px;
+
+    margin-top: 6px;
   }
 
 
-  /* ABOUT */
+  /* -----------------------------------------
+     VIDEO HOVER
+  ----------------------------------------- */
+
+  .video-hover {
+    display: none;
+  }
+
+  .project:hover {
+    transform: none;
+  }
+
+  .project:hover .project-visual video {
+    transform: none;
+  }
+
+
+  /* -----------------------------------------
+     ABOUT
+  ----------------------------------------- */
 
   .about,
   .experience {
@@ -764,16 +1317,22 @@ footer p {
   }
 
 
-  /* SKILLS */
+  /* -----------------------------------------
+     SKILLS
+  ----------------------------------------- */
 
   .skill-columns {
     margin-left: 0;
+
     grid-template-columns: 1fr;
+
     gap: 35px;
   }
 
 
-  /* CONTACT */
+  /* -----------------------------------------
+     CONTACT
+  ----------------------------------------- */
 
   .contact {
     padding: 24vw 6vw;
@@ -785,23 +1344,58 @@ footer p {
 
   .contact-button {
     gap: 15px;
+
     padding: 16px 18px;
+
     font-size: 10px;
   }
 
 
-  /* FOOTER */
+  /* -----------------------------------------
+     FOOTER
+  ----------------------------------------- */
 
   footer {
     padding: 25px 6vw;
+
     flex-wrap: wrap;
+
     gap: 15px;
   }
 
   footer p {
     order: 3;
+
     width: 100%;
+
     margin: 0;
+  }
+
+
+  /* -----------------------------------------
+     MODAL
+  ----------------------------------------- */
+
+  .video-modal {
+    padding: 15px;
+  }
+
+  .video-modal-content {
+    width: 100%;
+
+    max-height: 85vh;
+  }
+
+  .video-modal-content video {
+    max-width: 100%;
+
+    max-height: 80vh;
+  }
+
+  .video-modal-close {
+    top: -52px;
+
+    right: 0;
   }
 
 }
@@ -850,7 +1444,43 @@ footer p {
   }
 
   .project-info span {
-    font-size: 11px;
+    font-size: 10px;
+  }
+
+  .video-showcase {
+    gap: 55px;
+  }
+
+  .video-row {
+    gap: 32px;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+
+    transform: none;
   }
 
 }
