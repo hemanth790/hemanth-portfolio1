@@ -677,3 +677,427 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 });
+/* =========================================================
+   SMART DYNAMIC H / V VIDEO GALLERY
+========================================================= */
+
+(function () {
+
+  const gallery = document.querySelector("#dynamicGallery");
+
+  if (!gallery) return;
+
+  const cards = Array.from(
+    gallery.querySelectorAll("[data-video-card]")
+  );
+
+  if (!cards.length) return;
+
+
+  /*
+   * -------------------------------------------------------
+   * Get video orientation
+   * -------------------------------------------------------
+   */
+
+  function getOrientation(video) {
+
+    if (
+      video.videoWidth &&
+      video.videoHeight
+    ) {
+
+      return video.videoWidth > video.videoHeight
+        ? "horizontal"
+        : "vertical";
+
+    }
+
+    /*
+     * Fallback based on the current known
+     * portfolio videos.
+     */
+
+    const source =
+      video.dataset.video ||
+      "";
+
+    const verticalNames = [
+      "waver-v10",
+      "growingfinal",
+      "sequence02",
+      "3-websites",
+      "warren-buffett"
+    ];
+
+    const isVertical =
+      verticalNames.some(name =>
+        source.toLowerCase().includes(name)
+      );
+
+    return isVertical
+      ? "vertical"
+      : "horizontal";
+  }
+
+
+  /*
+   * -------------------------------------------------------
+   * Get aspect ratio
+   * -------------------------------------------------------
+   */
+
+  function getRatio(card) {
+
+    const video =
+      card.querySelector("video");
+
+    if (
+      video &&
+      video.videoWidth &&
+      video.videoHeight
+    ) {
+
+      return (
+        video.videoWidth /
+        video.videoHeight
+      );
+
+    }
+
+    return card.classList.contains("is-horizontal")
+      ? 16 / 9
+      : 9 / 16;
+  }
+
+
+  /*
+   * -------------------------------------------------------
+   * Identify orientation
+   * -------------------------------------------------------
+   */
+
+  function identifyCards() {
+
+    cards.forEach(card => {
+
+      const video =
+        card.querySelector("video");
+
+      if (!video) return;
+
+      const orientation =
+        getOrientation(video);
+
+      card.classList.remove(
+        "is-horizontal",
+        "is-vertical"
+      );
+
+      card.classList.add(
+        orientation === "horizontal"
+          ? "is-horizontal"
+          : "is-vertical"
+      );
+
+    });
+
+  }
+
+
+  /*
+   * -------------------------------------------------------
+   * Build intelligent rows
+   *
+   * We use aspect ratios rather than fixed row types.
+   *
+   * V = approximately 0.56 width/height
+   * H = approximately 1.77 width/height
+   * -------------------------------------------------------
+   */
+
+  function buildRows() {
+
+    identifyCards();
+
+    const containerWidth =
+      gallery.clientWidth;
+
+    if (!containerWidth) return;
+
+
+    /*
+     * Mobile = one card per row
+     */
+
+    if (window.innerWidth < 768) {
+
+      gallery.innerHTML = "";
+
+      cards.forEach(card => {
+
+        const row =
+          document.createElement("div");
+
+        row.className =
+          "dynamic-gallery-row";
+
+        row.appendChild(card);
+
+        card.style.width = "100%";
+
+        gallery.appendChild(row);
+
+      });
+
+      return;
+    }
+
+
+    /*
+     * Desktop / tablet
+     */
+
+    const gap = window.innerWidth < 1100
+      ? 14
+      : 18;
+
+    const targetHeight =
+      window.innerWidth < 1100
+        ? 300
+        : 390;
+
+
+    const rows = [];
+    let currentRow = [];
+    let currentRatio = 0;
+
+
+    cards.forEach(card => {
+
+      const ratio =
+        getRatio(card);
+
+      const newRatio =
+        currentRatio + ratio;
+
+
+      /*
+       * Estimate row width at target height
+       */
+
+      const itemCount =
+        currentRow.length + 1;
+
+      const estimatedWidth =
+        newRatio * targetHeight +
+        gap * (itemCount - 1);
+
+
+      /*
+       * If adding another card makes the row
+       * too wide, close the current row.
+       */
+
+      if (
+        currentRow.length &&
+        estimatedWidth > containerWidth
+      ) {
+
+        rows.push(currentRow);
+
+        currentRow = [card];
+
+        currentRatio = ratio;
+
+      } else {
+
+        currentRow.push(card);
+
+        currentRatio = newRatio;
+
+      }
+
+    });
+
+
+    if (currentRow.length) {
+
+      rows.push(currentRow);
+
+    }
+
+
+    /*
+     * Rebuild DOM
+     */
+
+    gallery.innerHTML = "";
+
+
+    rows.forEach(
+      (rowCards, rowIndex) => {
+
+        const row =
+          document.createElement("div");
+
+        row.className =
+          "dynamic-gallery-row";
+
+
+        /*
+         * Calculate the exact row height.
+         */
+
+        const ratioSum =
+          rowCards.reduce(
+            (sum, card) =>
+              sum + getRatio(card),
+            0
+          );
+
+
+        let rowHeight =
+          (
+            containerWidth -
+            gap * (rowCards.length - 1)
+          ) / ratioSum;
+
+
+        /*
+         * Avoid extremely huge final rows.
+         */
+
+        const isLastRow =
+          rowIndex === rows.length - 1;
+
+
+        if (
+          isLastRow &&
+          rowCards.length === 1
+        ) {
+
+          const card =
+            rowCards[0];
+
+          const ratio =
+            getRatio(card);
+
+
+          /*
+           * Keep a single final card visually
+           * balanced instead of stretching it
+           * across the entire screen.
+           */
+
+          if (
+            card.classList.contains(
+              "is-horizontal"
+            )
+          ) {
+
+            rowHeight =
+              Math.min(
+                rowHeight,
+                420
+              );
+
+          } else {
+
+            rowHeight =
+              Math.min(
+                rowHeight,
+                520
+              );
+
+          }
+
+        }
+
+
+        rowCards.forEach(card => {
+
+          const ratio =
+            getRatio(card);
+
+          const width =
+            ratio * rowHeight;
+
+          card.style.width =
+            `${width}px`;
+
+          row.appendChild(card);
+
+        });
+
+
+        gallery.appendChild(row);
+
+      }
+    );
+
+  }
+
+
+  /*
+   * -------------------------------------------------------
+   * Wait for video metadata
+   * -------------------------------------------------------
+   */
+
+  cards.forEach(card => {
+
+    const video =
+      card.querySelector("video");
+
+    if (!video) return;
+
+    video.addEventListener(
+      "loadedmetadata",
+      () => {
+
+        buildRows();
+
+      },
+      {
+        once: true
+      }
+    );
+
+  });
+
+
+  /*
+   * -------------------------------------------------------
+   * Initial layout
+   * -------------------------------------------------------
+   */
+
+  buildRows();
+
+
+  /*
+   * -------------------------------------------------------
+   * Recalculate on resize
+   * -------------------------------------------------------
+   */
+
+  let resizeTimer;
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      clearTimeout(resizeTimer);
+
+      resizeTimer =
+        setTimeout(
+          buildRows,
+          150
+        );
+
+    }
+  );
+
+
+})();
