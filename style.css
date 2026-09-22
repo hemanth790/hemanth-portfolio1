@@ -1641,3 +1641,29 @@ footer > a:not(.logo) {
   }
 
 }
+/* =========================================================
+   EXPERIENCE + SKILLS — HEADING CONTRAST FIX
+========================================================= */
+
+/* Experience */
+.experience .section-heading,
+.experience .section-heading h2,
+.experience .section-heading h2 em {
+  color: #191919;
+}
+
+.experience .section-heading .eyebrow {
+  color: #5f5d58;
+}
+
+
+/* Skills */
+.services .section-heading,
+.services .section-heading h2,
+.services .section-heading h2 em {
+  color: #191919;
+}
+
+.services .section-heading .eyebrow {
+  color: #5f5d58;
+}
