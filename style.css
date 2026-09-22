@@ -1667,3 +1667,113 @@ footer > a:not(.logo) {
 .services .section-heading .eyebrow {
   color: #5f5d58;
 }
+/* =========================================================
+   FINAL SECTION COLOR FIX
+   PROFILE + EXPERIENCE + SKILLS
+========================================================= */
+
+/* ---------------------------------------------------------
+   02 — PROFILE
+--------------------------------------------------------- */
+
+.about {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.about .eyebrow {
+  color: #777;
+}
+
+.about h2 {
+  color: #151515;
+}
+
+.about h2 em {
+  color: #151515;
+}
+
+.about-copy {
+  color: #151515;
+}
+
+.about-copy .big-copy {
+  color: #191919 !important;
+}
+
+.about-copy p:not(.big-copy) {
+  color: #64625d;
+}
+
+
+/* ---------------------------------------------------------
+   03 — EXPERIENCE
+--------------------------------------------------------- */
+
+.experience {
+  background: #e7e4dd;
+  color: #151515;
+}
+
+.experience .eyebrow {
+  color: #66635e;
+}
+
+.experience .section-heading h2 {
+  color: #151515;
+}
+
+.experience .section-heading h2 em {
+  color: #151515;
+}
+
+.experience-copy p {
+  color: #5f5d58;
+}
+
+
+/* ---------------------------------------------------------
+   04 — SKILLS & TOOLS
+--------------------------------------------------------- */
+
+.services {
+  background: #dfddd7;
+  color: #151515;
+}
+
+.services .eyebrow {
+  color: #66635e;
+}
+
+.services .section-heading h2 {
+  color: #151515;
+}
+
+.services .section-heading h2 em {
+  color: #151515;
+}
+
+
+/* SKILLS / TOOLS / LANGUAGES titles */
+
+.services .skill-group h3 {
+  color: #151515 !important;
+}
+
+
+/* Skill items */
+
+.services .skill-group p {
+  color: #666 !important;
+}
+
+
+/* Skill divider */
+
+.services .skill-group {
+  border-top-color: #b9b6af;
+}
+
+.services .skill-group p {
+  border-bottom-color: #c9c6bf;
+}
