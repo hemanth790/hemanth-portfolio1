@@ -1484,3 +1484,160 @@ footer > a:not(.logo) {
   }
 
 }
+
+/* =========================================================
+   DYNAMIC H / V VIDEO GALLERY
+========================================================= */
+
+.dynamic-gallery {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.dynamic-gallery-row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.dynamic-gallery-row .project {
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+/* Video frame */
+.dynamic-gallery-row .project-visual {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* Vertical */
+.dynamic-gallery-row .project.is-vertical .project-visual {
+  aspect-ratio: 9 / 16;
+}
+
+/* Horizontal */
+.dynamic-gallery-row .project.is-horizontal .project-visual {
+  aspect-ratio: 16 / 9;
+}
+
+.dynamic-gallery-row video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #111;
+}
+
+/* Project information */
+.dynamic-gallery-row .project-info {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.dynamic-gallery-row .project-info h3 {
+  margin: 0;
+}
+
+.dynamic-gallery-row .project-info span {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.dynamic-gallery-row .project {
+  transition:
+    transform 0.5s cubic-bezier(.2,.7,.2,1),
+    opacity 0.5s ease;
+}
+
+.dynamic-gallery-row .project:hover {
+  transform: translateY(-5px);
+}
+
+.dynamic-gallery-row .project-visual {
+  transition:
+    transform 0.6s cubic-bezier(.2,.7,.2,1),
+    border-color 0.4s ease;
+}
+
+.dynamic-gallery-row .project:hover .project-visual {
+  border-color: rgba(255,255,255,0.35);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+  .dynamic-gallery {
+    gap: 42px;
+  }
+
+  .dynamic-gallery-row {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .dynamic-gallery-row .project {
+    width: 100% !important;
+  }
+
+  .dynamic-gallery-row .project-visual {
+    width: 100%;
+  }
+
+  .dynamic-gallery-row .project.is-vertical .project-visual {
+    aspect-ratio: 9 / 16;
+  }
+
+  .dynamic-gallery-row .project.is-horizontal .project-visual {
+    aspect-ratio: 16 / 9;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .dynamic-gallery {
+    width: min(100% - 40px, 900px);
+  }
+
+  .dynamic-gallery-row {
+    gap: 14px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .dynamic-gallery-row .project,
+  .dynamic-gallery-row .project-visual {
+    transition: none;
+  }
+
+}
