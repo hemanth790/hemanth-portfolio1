@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -14,38 +15,71 @@
     content="Hemanth B — Creative Video Editor Portfolio"
   >
 
+  <meta
+    name="theme-color"
+    content="#f3f1ec"
+  >
+
   <title>Hemanth B — Video Editor</title>
 
-  <!-- GOOGLE FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- =========================================
+       GOOGLE FONTS
+  ========================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./style.css">
+
+  <!-- =========================================
+       STYLESHEET
+  ========================================== -->
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
 
 </head>
 
 
-<body>
+<body id="top">
 
-  <!-- GRAIN -->
+
+  <!-- =========================================
+       GRAIN
+  ========================================== -->
+
   <div class="grain"></div>
 
 
-  <!-- =========================
+
+  <!-- =========================================
        NAVIGATION
-  ========================== -->
+  ========================================== -->
 
   <nav class="nav">
 
-    <a href="#top" class="logo">
+    <a
+      href="#top"
+      class="logo"
+    >
       HB<span>.</span>
     </a>
+
 
     <div class="nav-links">
 
@@ -67,6 +101,7 @@
 
     </div>
 
+
     <a
       class="nav-cta"
       href="https://wa.me/917338186729"
@@ -79,14 +114,23 @@
   </nav>
 
 
-  <main id="top">
+
+  <!-- =========================================
+       MAIN
+  ========================================== -->
+
+  <main>
 
 
-    <!-- =========================
+
+    <!-- =======================================
          HERO
-    ========================== -->
+    ======================================== -->
 
     <section class="hero">
+
+
+      <!-- HERO COPY -->
 
       <div class="hero-copy reveal">
 
@@ -94,26 +138,40 @@
           Creative video editor · Visual storyteller
         </p>
 
+
         <h1>
           I EDIT <span>STORIES</span><br>
           THAT HOLD<br>
           ATTENTION.
         </h1>
 
+
         <p class="intro">
-          Hi, I'm <strong>Hemanth B</strong> — a creative video editor
-          focused on short and long-form content, visual storytelling
-          and engaging edits.
+
+          Hi, I'm <strong>Hemanth B</strong> —
+          a creative video editor focused on
+          short and long-form content,
+          visual storytelling and engaging edits.
+
         </p>
 
+
         <div class="hero-actions">
+
 
           <a
             href="#work"
             class="button button-dark"
           >
-            View my work <span>↓</span>
+
+            View my work
+
+            <span>
+              ↓
+            </span>
+
           </a>
+
 
           <a
             href="https://wa.me/917338186729"
@@ -124,21 +182,28 @@
             WhatsApp me ↗
           </a>
 
+
         </div>
 
       </div>
 
 
+
+      <!-- HERO IMAGE -->
+
       <div class="hero-image reveal">
+
 
         <div class="image-wrap">
 
           <img
             src="./hemanth.jpg"
             alt="Hemanth B, Video Editor"
+            loading="eager"
           >
 
         </div>
+
 
         <div class="image-label">
 
@@ -150,24 +215,36 @@
 
         </div>
 
+
         <div class="floating-note">
-          Scroll to explore <span>↓</span>
+
+          Scroll to explore
+
+          <span>
+            ↓
+          </span>
+
         </div>
 
+
       </div>
+
 
     </section>
 
 
 
-    <!-- =========================
+    <!-- =======================================
          WORK
-    ========================== -->
+    ======================================== -->
 
     <section
       id="work"
       class="work section"
     >
+
+
+      <!-- SECTION HEADER -->
 
       <div class="section-heading reveal">
 
@@ -175,43 +252,58 @@
           01 — Selected work
         </p>
 
+
         <h2>
           A FEW THINGS<br>
           <em>I'VE EDITED.</em>
         </h2>
 
+
         <p class="section-text">
-          A selection of my work across short-form content,
-          UI-driven visuals and visual storytelling.
+
+          A selection of my work across
+          short-form content, UI-driven
+          visuals and visual storytelling.
+
         </p>
 
       </div>
 
 
 
+      <!-- =====================================
+           VIDEO SHOWCASE
+      ====================================== -->
+
       <div class="video-showcase">
 
 
-        <!-- =================================
-             ROW 1 — VERTICAL VIDEOS
-        ================================== -->
+
+        <!-- ===================================
+             ROW 1
+             3 VERTICAL VIDEOS
+        ==================================== -->
 
         <div class="video-row vertical-row">
 
 
-          <!-- ==============================
-               WAVER V10
-          =============================== -->
 
-          <article class="project reveal">
+          <!-- WAVER V10 -->
 
-            <div class="project-visual portrait-video">
+          <article
+            class="project video-card reveal"
+          >
+
+            <div
+              class="project-visual portrait-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./waver-v10.mp4"
               >
 
                 <source
@@ -219,9 +311,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Waver V10"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -233,7 +335,7 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -242,19 +344,22 @@
 
 
 
-          <!-- ==============================
-               GROWING FINAL
-          =============================== -->
+          <!-- GROWING FINAL -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual portrait-video">
+            <div
+              class="project-visual portrait-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./growingfinal.mp4"
               >
 
                 <source
@@ -262,9 +367,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Growing Final"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -276,7 +391,7 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -284,28 +399,23 @@
           </article>
 
 
-        </div>
-
-
-
-        <!-- =================================
-             ROW 2 — VERTICAL VIDEOS
-        ================================== -->
-
-        <div class="video-row vertical-row">
-
 
           <!-- SEQUENCE 02 -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual portrait-video">
+            <div
+              class="project-visual portrait-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./sequence02.mp4"
               >
 
                 <source
@@ -313,9 +423,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Sequence 02"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -327,7 +447,7 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -339,24 +459,31 @@
 
 
 
-        <!-- =================================
-             ROW 3 — HORIZONTAL VIDEOS
-        ================================== -->
+        <!-- ===================================
+             ROW 2
+             2 HORIZONTAL VIDEOS
+        ==================================== -->
 
         <div class="video-row horizontal-row">
 
 
+
           <!-- TIPS FOR EDITORS -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual landscape-video">
+            <div
+              class="project-visual landscape-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./tips for editors 1.mp4"
               >
 
                 <source
@@ -364,9 +491,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Tips for Editors"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -378,7 +515,7 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -389,15 +526,20 @@
 
           <!-- SPOTIFY UI -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual landscape-video">
+            <div
+              class="project-visual landscape-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./spotify-ui.mp4"
               >
 
                 <source
@@ -405,9 +547,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Spotify UI Edit"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -419,48 +571,7 @@
               </h3>
 
               <span>
-                Play video
-              </span>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- UI WITH SOUND DESIGN -->
-
-          <article class="project reveal">
-
-            <div class="project-visual landscape-video">
-
-              <video
-                controls
-                playsinline
-                preload="metadata"
-                webkit-playsinline
-              >
-
-                <source
-                  src="./ui-with-sfx.mp4"
-                  type="video/mp4"
-                >
-
-                Your browser does not support HTML5 video.
-
-              </video>
-
-            </div>
-
-
-            <div class="project-info">
-
-              <h3>
-                UI with Sound Design
-              </h3>
-
-              <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -472,24 +583,31 @@
 
 
 
-        <!-- =================================
-             ROW 4 — VERTICAL VIDEOS
-        ================================== -->
+        <!-- ===================================
+             ROW 3
+             2 VERTICAL VIDEOS
+        ==================================== -->
 
         <div class="video-row vertical-row">
 
 
+
           <!-- 3 WEBSITES -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual portrait-video">
+            <div
+              class="project-visual portrait-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./3-websites.mp4"
               >
 
                 <source
@@ -497,9 +615,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open 3 Websites"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -511,7 +639,7 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
               </span>
 
             </div>
@@ -522,15 +650,20 @@
 
           <!-- WARREN BUFFETT -->
 
-          <article class="project reveal">
+          <article
+            class="project video-card reveal"
+          >
 
-            <div class="project-visual portrait-video">
+            <div
+              class="project-visual portrait-video"
+            >
 
               <video
                 controls
                 playsinline
-                preload="metadata"
                 webkit-playsinline
+                preload="none"
+                data-video="./warren-buffett.mp4"
               >
 
                 <source
@@ -538,9 +671,19 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
 
               </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open Warren Buffett"
+              >
+                VIEW
+              </button>
 
             </div>
 
@@ -552,7 +695,76 @@
               </h3>
 
               <span>
-                Play video
+                Play video ↗
+              </span>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+
+
+        <!-- ===================================
+             ROW 4
+             1 HORIZONTAL VIDEO
+        ==================================== -->
+
+        <div
+          class="video-row horizontal-row single-video-row"
+        >
+
+
+          <!-- UI WITH SOUND DESIGN -->
+
+          <article
+            class="project video-card reveal"
+          >
+
+            <div
+              class="project-visual landscape-video"
+            >
+
+              <video
+                controls
+                playsinline
+                webkit-playsinline
+                preload="none"
+                data-video="./ui-with-sfx.mp4"
+              >
+
+                <source
+                  src="./ui-with-sfx.mp4"
+                  type="video/mp4"
+                >
+
+                Your browser does not support
+                HTML5 video.
+
+              </video>
+
+
+              <button
+                class="video-hover"
+                type="button"
+                aria-label="Open UI with Sound Design"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+
+            <div class="project-info">
+
+              <h3>
+                UI with Sound Design
+              </h3>
+
+              <span>
+                Play video ↗
               </span>
 
             </div>
@@ -565,24 +777,27 @@
 
       </div>
 
+
     </section>
 
 
 
-    <!-- =========================
+    <!-- =======================================
          PROFILE
-    ========================== -->
+    ======================================== -->
 
     <section
       id="about"
       class="about section"
     >
 
+
       <div class="about-sticky">
 
         <p class="eyebrow">
           02 — Profile
         </p>
+
 
         <h2>
           GOOD EDITING<br>
@@ -592,37 +807,50 @@
       </div>
 
 
+
       <div class="about-copy reveal">
 
         <p class="big-copy">
-          Visual storyteller and video editor with a focus on
-          documentary-style editing, UI-driven visuals,
-          parallax motion, and short-form content editing.
+
+          Visual storyteller and video editor
+          with a focus on documentary-style
+          editing, UI-driven visuals,
+          parallax motion, and short-form
+          content editing.
+
         </p>
 
 
         <p>
-          Experienced in creating viral reels that balance
-          emotion, clarity, and audience retention.
+
+          Experienced in creating engaging
+          reels that balance emotion,
+          clarity, and audience retention.
+
         </p>
 
       </div>
+
 
     </section>
 
 
 
-    <!-- =========================
+    <!-- =======================================
          EXPERIENCE
-    ========================== -->
+    ======================================== -->
 
-    <section class="experience section">
+    <section
+      class="experience section"
+    >
+
 
       <div class="section-heading reveal">
 
         <p class="eyebrow">
           03 — Experience
         </p>
+
 
         <h2>
           FULL-TIME<br>
@@ -632,33 +860,42 @@
       </div>
 
 
+
       <div class="experience-copy reveal">
 
         <p>
-          Creating engaging video content with clear visual
-          storytelling and balanced pacing.
+
+          Creating engaging video content
+          with clear visual storytelling
+          and balanced pacing.
+
         </p>
 
 
         <p>
-          Editing short-form and long-form content for different
-          niches and audiences.
+
+          Editing short-form and long-form
+          content for different niches
+          and audiences.
+
         </p>
 
       </div>
+
 
     </section>
 
 
 
-    <!-- =========================
+    <!-- =======================================
          SKILLS
-    ========================== -->
+    ======================================== -->
 
     <section
       id="skills"
       class="services section"
     >
+
 
       <div class="section-heading reveal">
 
@@ -666,11 +903,13 @@
           04 — Skills & tools
         </p>
 
+
         <h2>
           MY <em>TOOLKIT.</em>
         </h2>
 
       </div>
+
 
 
       <div class="skill-columns">
@@ -684,25 +923,31 @@
             SKILLS
           </h3>
 
+
           <p>
             Short-form Editing
           </p>
+
 
           <p>
             Documentary-Style Editing
           </p>
 
+
           <p>
             UI-Style Editing
           </p>
+
 
           <p>
             Parallax Motion Effects
           </p>
 
+
           <p>
             Visual Storytelling
           </p>
+
 
           <p>
             Sound Design & Music Sync
@@ -720,21 +965,26 @@
             TOOLS
           </h3>
 
+
           <p>
             Adobe Premiere Pro
           </p>
+
 
           <p>
             Adobe After Effects
           </p>
 
+
           <p>
             Adobe Photoshop
           </p>
 
+
           <p>
             Adobe Illustrator
           </p>
+
 
           <p>
             AI Tools for Editing & Workflow
@@ -752,9 +1002,11 @@
             LANGUAGES
           </h3>
 
+
           <p>
             Kannada
           </p>
+
 
           <p>
             English
@@ -765,18 +1017,20 @@
 
       </div>
 
+
     </section>
 
 
 
-    <!-- =========================
+    <!-- =======================================
          CONTACT
-    ========================== -->
+    ======================================== -->
 
     <section
       id="contact"
       class="contact"
     >
+
 
       <p class="eyebrow">
         05 — Let's work together
@@ -790,13 +1044,20 @@
 
 
       <p>
-        Let's turn your idea into something people want to watch.
+
+        Let's turn your idea into something
+        people want to watch.
+
       </p>
+
 
 
       <div class="contact-links">
 
-        <a href="mailto:hemanthb790@gmail.com">
+
+        <a
+          href="mailto:hemanthb790@gmail.com"
+        >
           hemanthb790@gmail.com
         </a>
 
@@ -805,7 +1066,9 @@
           Tumkur, India
         </span>
 
+
       </div>
+
 
 
       <a
@@ -823,6 +1086,7 @@
 
       </a>
 
+
     </section>
 
 
@@ -830,11 +1094,58 @@
 
 
 
-  <!-- =========================
+  <!-- =========================================
+       CINEMATIC VIDEO MODAL
+  ========================================== -->
+
+  <div
+    class="video-modal"
+    id="videoModal"
+    aria-hidden="true"
+  >
+
+
+    <div
+      class="video-modal-backdrop"
+    ></div>
+
+
+    <div
+      class="video-modal-content"
+    >
+
+
+      <button
+        class="video-modal-close"
+        id="videoModalClose"
+        type="button"
+        aria-label="Close video"
+      >
+        ×
+      </button>
+
+
+      <video
+        id="modalVideo"
+        controls
+        playsinline
+        webkit-playsinline
+      ></video>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =========================================
        FOOTER
-  ========================== -->
+  ========================================== -->
 
   <footer>
+
 
     <a
       href="#top"
@@ -853,12 +1164,19 @@
       Back to top ↑
     </a>
 
+
   </footer>
 
 
 
-  <!-- JAVASCRIPT -->
-  <script src="./script.js"></script>
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script
+    src="./script.js"
+  ></script>
+
 
 </body>
 
